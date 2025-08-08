@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Training.Data;
+using Training.DTOs;
 using Training.Models;
 
 
@@ -29,10 +30,11 @@ namespace MySimpleApi.Controllers
 
         // GET: api/users/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<UserDto>> GetUser(int id)
         {
             // Sử dụng FirstOrDefaultAsync để tìm user theo ID
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await _context.Users.AsNoTracking()
+                                           .FirstOrDefaultAsync(u => u.Id == id);
             if (user == null)
             {
                 return NotFound();
