@@ -138,3 +138,4 @@ D:\API .NETCORE\Training\obj\Debug\net9.0\refint\Training.dll
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.pdb
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.genruntimeconfig.cache
 D:\API .NETCORE\Training\obj\Debug\net9.0\ref\Training.dll
+D:\API .NETCORE\Training\obj\Debug\net9.0\Training.sourcelink.json

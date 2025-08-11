@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore; 
 using Training.Data; 
 using Training.Models; 
-using Microsoft.AspNetCore.Authorization; // Để sử dụng Exception
+using Microsoft.AspNetCore.Authorization;
+using Training.DTOs; // Để sử dụng Exception
 
 namespace Training.Controllers
 {
@@ -17,43 +18,49 @@ namespace Training.Controllers
         }
 
         
-        [HttpGet]
-        [AllowAnonymous] 
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
-        {
-            
-            try
-            {
-                return Ok(await _context.Products.ToListAsync());
-            }
-            catch (Exception ex)
-            {
-                
-                return StatusCode(500, "Đã xảy ra lỗi khi lấy danh sách sản phẩm.");
-            }
-        }
+       [HttpGet]
+       [AllowAnonymous] // Hoặc [Authorize] tùy thuộc vào logic của bạn
+       public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts(
+       [FromQuery] int pageNumber = 1,
+       [FromQuery] int pageSize = 10)
+      {
+          var products = await _context.Products
+                                 .Skip((pageNumber - 1) * pageSize)
+                                 .Take(pageSize)
+                                 .ToListAsync();
+
+          var productDtos = products.Select(p => new ProductDto
+      {
+         Id = p.Id,
+         Name = p.Name,
+         Price = p.Price,
+         Description = p.Description
+     });
+
+         return Ok(productDtos);
+}
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductDto>> GetProduct(int id)
         {
-            try
-            {
-                var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            var productDto = await _context.Products
+                                  .Where(p => p.Id == id)
+                                  .Select(p => new ProductDto 
+                                  {
+                                      Id = p.Id,
+                                      Name = p.Name,
+                                      Price = p.Price,
+                                      Description = p.Description
+                                  })
+                                  .FirstOrDefaultAsync();
 
-                if (product == null)
-                {
-                    
-                    return NotFound($"Sản phẩm với ID {id} không tồn tại.");
-                }
-
-                return Ok(product); 
-            }
-            catch (Exception ex)
+            if (productDto == null)
             {
-                // TODO: Log lỗi chi tiết ở đây bằng _logger.LogError(ex, "...");
-                return StatusCode(500, $"Đã xảy ra lỗi khi lấy sản phẩm với ID {id}.");
-            }
-        }
+               return NotFound();
+         }
+
+              return Ok(productDto);
+    }
 
         // POST: api/products
         // Tạo một sản phẩm mới
