@@ -41,6 +41,15 @@ D:\API .NETCORE\Training\bin\Debug\net9.0\Microsoft.OpenApi.dll
 D:\API .NETCORE\Training\bin\Debug\net9.0\Mono.TextTemplating.dll
 D:\API .NETCORE\Training\bin\Debug\net9.0\Npgsql.dll
 D:\API .NETCORE\Training\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\API .NETCORE\Training\bin\Debug\net9.0\Serilog.dll
+D:\API .NETCORE\Training\bin\Debug\net9.0\Serilog.AspNetCore.dll
+D:\API .NETCORE\Training\bin\Debug\net9.0\Serilog.Extensions.Hosting.dll
+D:\API .NETCORE\Training\bin\Debug\net9.0\Serilog.Extensions.Logging.dll
+D:\API .NETCORE\Training\bin\Debug\net9.0\Serilog.Formatting.Compact.dll
+D:\API .NETCORE\Training\bin\Debug\net9.0\Serilog.Settings.Configuration.dll
+D:\API .NETCORE\Training\bin\Debug\net9.0\Serilog.Sinks.Console.dll
+D:\API .NETCORE\Training\bin\Debug\net9.0\Serilog.Sinks.Debug.dll
+D:\API .NETCORE\Training\bin\Debug\net9.0\Serilog.Sinks.File.dll
 D:\API .NETCORE\Training\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\API .NETCORE\Training\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\API .NETCORE\Training\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -124,6 +133,7 @@ D:\API .NETCORE\Training\obj\Debug\net9.0\Training.AssemblyInfo.cs
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.csproj.CoreCompileInputs.cache
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.MvcApplicationPartsAssemblyInfo.cs
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.MvcApplicationPartsAssemblyInfo.cache
+D:\API .NETCORE\Training\obj\Debug\net9.0\Training.sourcelink.json
 D:\API .NETCORE\Training\obj\Debug\net9.0\rjimswa.dswa.cache.json
 D:\API .NETCORE\Training\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 D:\API .NETCORE\Training\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -132,10 +142,10 @@ D:\API .NETCORE\Training\obj\Debug\net9.0\staticwebassets.build.json
 D:\API .NETCORE\Training\obj\Debug\net9.0\staticwebassets.build.json.cache
 D:\API .NETCORE\Training\obj\Debug\net9.0\staticwebassets.development.json
 D:\API .NETCORE\Training\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+D:\API .NETCORE\Training\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.csproj.Up2Date
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.dll
 D:\API .NETCORE\Training\obj\Debug\net9.0\refint\Training.dll
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.pdb
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.genruntimeconfig.cache
 D:\API .NETCORE\Training\obj\Debug\net9.0\ref\Training.dll
-D:\API .NETCORE\Training\obj\Debug\net9.0\Training.sourcelink.json
