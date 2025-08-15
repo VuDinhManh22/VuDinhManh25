@@ -3,6 +3,7 @@ using Training.Models;
 using Training.Services;
 using System.Threading.Tasks;
 using Training.Service;
+using Microsoft.Extensions.Logging;
 
 namespace Training.Controllers
 {
@@ -11,10 +12,12 @@ namespace Training.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, ILogger<AuthController> logger)
         {
             _authService = authService;
+            _logger = logger;
         }
 
         // POST: api/Auth/register
@@ -49,17 +52,21 @@ namespace Training.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+               return BadRequest(ModelState);
             }
 
-            var token = await _authService.AuthenticateUser(request.Email, request.Password);
+        var token = await _authService.AuthenticateUser(request.Email, request.Password);
 
-            if (token == null)
-            {
-                return Unauthorized("Email hoặc mật khẩu không đúng."); // 401 Unauthorized
-            }
-
-            return Ok(new { Token = token }); // Trả về token
+        if (token == null)
+        {
+          _logger.LogWarning("Login failed for user: {Email}", request.Email);
+           return Unauthorized("Email hoặc mật khẩu không đúng.");
         }
+
+       // Thêm dòng log này để ghi lại khi đăng nhập thành công
+         _logger.LogInformation("User logged in successfully: {Email}", request.Email);
+
+        return Ok(new { Token = token });
+       }
     }
 }

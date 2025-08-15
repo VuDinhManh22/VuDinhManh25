@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Training.Data; 
 using Training.Models; 
 using Microsoft.AspNetCore.Authorization;
-using Training.DTOs; // Để sử dụng Exception
+using Training.DTOs;
+using Microsoft.Extensions.Logging;
+using Serilog.Core; 
 
 namespace Training.Controllers
 {
@@ -12,9 +14,12 @@ namespace Training.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public ProductsController(ApplicationDbContext context /*, ILogger<ProductsController> logger */)
+        private readonly ILogger<ProductsController> _logger;
+         
+        public ProductsController(ApplicationDbContext context, ILogger<ProductsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         
@@ -81,6 +86,7 @@ namespace Training.Controllers
 
             try
             {
+                _logger.LogInformation("Creating a new product with name: {ProductName}", product.Name);
                 _context.Products.Add(product); 
                 await _context.SaveChangesAsync(); 
 
@@ -89,6 +95,7 @@ namespace Training.Controllers
             }
             catch (DbUpdateException ex) 
             {
+                _logger.LogError(ex, "An error occurred while creating product {ProductName}", product.Name);
                 return StatusCode(500, "Có lỗi xảy ra khi lưu sản phẩm vào cơ sở dữ liệu. Vui lòng thử lại.");
             }
             catch (Exception ex) 
