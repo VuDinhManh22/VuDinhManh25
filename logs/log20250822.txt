@@ -1,0 +1,5 @@
+2025-08-22 15:42:42.403 +07:00 [WRN] Failed to determine the https port for redirect.
+2025-08-22 15:43:10.687 +07:00 [INF] User logged in successfully: manh@gmail.com
+2025-08-22 15:43:11.782 +07:00 [INF] User logged in successfully: manh@gmail.com
+2025-08-22 15:43:51.953 +07:00 [INF] Token refreshed successfully.
+2025-08-22 15:43:52.799 +07:00 [WRN] Invalid or expired refresh token used.
