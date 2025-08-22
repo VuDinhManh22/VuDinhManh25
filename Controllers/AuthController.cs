@@ -52,21 +52,43 @@ namespace Training.Controllers
         {
             if (!ModelState.IsValid)
             {
-               return BadRequest(ModelState);
+                return BadRequest(ModelState);
             }
 
-        var token = await _authService.AuthenticateUser(request.Email, request.Password);
+            var tokens = await _authService.AuthenticateUser(request.Email, request.Password);
 
-        if (token == null)
-        {
-          _logger.LogWarning("Login failed for user: {Email}", request.Email);
-           return Unauthorized("Email hoặc mật khẩu không đúng.");
+            if (tokens.JwtToken == null)
+            {
+                _logger.LogWarning("Login failed for user: {Email}", request.Email);
+                return Unauthorized("Email hoặc mật khẩu không đúng.");
+            }
+
+            // Thêm dòng log này để ghi lại khi đăng nhập thành công
+            _logger.LogInformation("User logged in successfully: {Email}", request.Email);
+
+           return Ok(new { JwtToken = tokens.JwtToken, RefreshToken = tokens.RefreshToken });
         }
+       
+       [HttpPost("refresh")]
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-       // Thêm dòng log này để ghi lại khi đăng nhập thành công
-         _logger.LogInformation("User logged in successfully: {Email}", request.Email);
+            // Gọi AuthService để làm mới token
+            var tokens = await _authService.Refresh(request.RefreshToken);
 
-        return Ok(new { Token = token });
-       }
+            if (tokens.JwtToken == null)
+            {
+                _logger.LogWarning("Invalid or expired refresh token used.");
+                return Unauthorized("Token làm mới không hợp lệ hoặc đã hết hạn.");
+            }
+
+            _logger.LogInformation("Token refreshed successfully.");
+
+            return Ok(new { JwtToken = tokens.JwtToken, RefreshToken = tokens.RefreshToken });
+        }
     }
 }

@@ -142,10 +142,10 @@ D:\API .NETCORE\Training\obj\Debug\net9.0\staticwebassets.build.json
 D:\API .NETCORE\Training\obj\Debug\net9.0\staticwebassets.build.json.cache
 D:\API .NETCORE\Training\obj\Debug\net9.0\staticwebassets.development.json
 D:\API .NETCORE\Training\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-D:\API .NETCORE\Training\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.csproj.Up2Date
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.dll
 D:\API .NETCORE\Training\obj\Debug\net9.0\refint\Training.dll
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.pdb
 D:\API .NETCORE\Training\obj\Debug\net9.0\Training.genruntimeconfig.cache
 D:\API .NETCORE\Training\obj\Debug\net9.0\ref\Training.dll
+D:\API .NETCORE\Training\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
